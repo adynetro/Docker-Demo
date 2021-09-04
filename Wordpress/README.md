@@ -14,4 +14,4 @@ Or
     -e "DB_USER=wp" \
     -e "DB_PASSWORD=secret" \
     -e "FS_METHOD=direct" \
-    trafex/wordpress
+    ghcr.io/adynetro/docker-demo:master
