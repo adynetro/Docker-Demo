@@ -11,6 +11,6 @@ if [ ! "$(ls -A "/var/www/wp-content" 2>/dev/null)" ]; then
     chown -R nobody.nobody /var/www
 
     # Generate secrets
-    curl -f https://api.wordpress.org/secret-key/1.1/salt/ >> /usr/src/wordpress/wp-secrets.php
+    curl -kf https://api.wordpress.org/secret-key/1.1/salt/ >> /usr/src/wordpress/wp-secrets.php
 fi
 exec "$@"

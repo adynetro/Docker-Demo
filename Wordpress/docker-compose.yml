@@ -18,7 +18,7 @@ services:
     volumes:
       - "site-data:/var/www/wp-content"
     ports:
-      - "80:80"
+      - "8080:8080"
     environment:
       DB_HOST: db
       DB_PASSWORD: wordpress

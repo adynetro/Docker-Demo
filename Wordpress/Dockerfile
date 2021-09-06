@@ -1,7 +1,8 @@
 FROM alpine:3.14
 
 # Install packages
-RUN apk --no-cache add \
+RUN sed -i 's/https/http/g' /etc/apk/repositories
+RUN apk update && apk --no-cache add \
   php8 \
   php8-fpm \
   php8-mysqli \
@@ -49,8 +50,9 @@ RUN chown -R nobody.nobody /var/www
 RUN mkdir -p /usr/src
 
 # Upstream tarballs include ./wordpress/ so this gives us /usr/src/wordpress
-RUN curl -o wordpress.tar.gz -SL "https://wordpress.org/latest.tar.gz" \
-	&& tar -xzf wordpress.tar.gz -C /usr/src/ \
+COPY wordpress-5.8.tar.gz wordpress.tar.gz
+# RUN curl -ko wordpress.tar.gz -SL "https://wordpress.org/latest.tar.gz" 
+RUN tar -xzf wordpress.tar.gz -C /usr/src/ \
 	&& rm wordpress.tar.gz \    
 	&& chown -R nobody.nobody /usr/src/wordpress
 
