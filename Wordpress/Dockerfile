@@ -1,7 +1,7 @@
 FROM alpine:3.14
 
 # Install packages
-RUN sed -i 's/https/http/g' /etc/apk/repositories
+RUN sed -i 's/https/http/g' /etc/apk/repositories 
 RUN apk update && apk --no-cache add \
   php8 \
   php8-fpm \
@@ -51,7 +51,7 @@ RUN mkdir -p /usr/src
 
 # Upstream tarballs include ./wordpress/ so this gives us /usr/src/wordpress
 COPY wordpress-5.8.tar.gz wordpress.tar.gz
-# RUN curl -ko wordpress.tar.gz -SL "https://wordpress.org/latest.tar.gz" 
+# RUN curl -ko wordpress.tar.gz -SL "https://wordpress.org/latest.tar.gz" Nu se downloadeaza de pe proxy
 RUN tar -xzf wordpress.tar.gz -C /usr/src/ \
 	&& rm wordpress.tar.gz \    
 	&& chown -R nobody.nobody /usr/src/wordpress
